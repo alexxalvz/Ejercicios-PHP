@@ -32,8 +32,10 @@
 
 <ul>
     <?php foreach ($books as $book): ?>
-    <li>Libro</li>
-    <li>Libro2</li>
+    <li>
+        <?= $book['name'] ?>
+    </li>
+   
     <?php endforeach; ?>
 </ul>
 </body>
