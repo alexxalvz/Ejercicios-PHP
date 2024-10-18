@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
+<?php
     $books = [
         [
             'name' => 'Do Androids Dream of Electric Sheep',
@@ -27,16 +27,38 @@
             'purchaseUrl' => 'http://example.com'
         ],
     ];
-  
+ 
+    function filter($items, $fn): array
+    {
+        $filteredItems = [];
+        foreach ($items as $item) {
+            if ($fn($items)) {
+                $filteredItems[] = $item;
+            }
+        }
+        return $filteredItems;
+    };
+    //$filteredBooks = $filter($books, 'releaseYear',1968);
+    /*$filteredBooks = filter($books, function ($book): bool {
+        return $book['releaseYear'] > 2000;
+    });++*/
+    $filteredBooks=array_filter($books, function ($book): bool {
+        return $book['releaseYear'] > 2000;
+    });
     ?>
-
-<ul>
-    <?php foreach ($books as $book): ?>
-    <li>
-        <?= $book['name'] ?>
-    </li>
-   
-    <?php endforeach; ?>
-</ul>
+    <!-- <?= $book['name'] ?> imprime como un echo -->
+    <!-- Información en el Git -->
+    <ul>
+        <?php foreach ($filteredBooks  as $book): ?>
+ 
+            <li>
+                <a href="<?= $book['purchaseUrl'] ?>">
+                    <?= $book['name'] ?>
+                </a>
+            </li>
+ 
+ 
+        <?php endforeach; ?>
+    </ul>
 </body>
 </html>
