@@ -6,8 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-<?php
-    $books = [
+    <?php
+     $books = [
         [
             'name' => 'Do Androids Dream of Electric Sheep',
             'author' => 'Philip K. Dick',
@@ -27,26 +27,14 @@
             'purchaseUrl' => 'http://example.com'
         ],
     ];
-    function filter($items, $fn): array
-    {
-        $filteredItems = [];
-        foreach ($items as $item) {
-            if ($fn($items)) {
-                $filteredItems[] = $item;
-            }
-        }
-        return $filteredItems;
-    };
-     //$filteredBooks = $filter($books, 'releaseYear',1968);
-    /*$filteredBooks = filter($books, function ($book): bool {
-        return $book['releaseYear'] > 2000;
-    });++*/
 
+    
+  
     $filteredBooks=array_filter($books, function ($book): bool {
-        return $book['releaseYear'] > 2000;
+        return $book['releaseYear'] < 2015;
     });
+    
     ?>
-
     <!-- <?= $book['name'] ?> imprime como un echo -->
     <!-- Información en el Git -->
     <ul>
