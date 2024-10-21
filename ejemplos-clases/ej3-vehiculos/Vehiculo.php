@@ -1,128 +1,105 @@
 <?php
-class Vehiculo{
-    private static $numRuedas;
-    public $color;
-    private $posx;
-    private $posy;
+
+class Vehiculo {
+    private $numRuedas;
+    private $color;
+    private $posX;
+    private $posY;
     private $velocidad;
     private $vMax;
-   
-    public function __construct($numRuedas, $color,$posx,$posy, $velocidad, $vMax){
-        $this->vMax = $vMax;
+
+    public function __construct($numRuedas, $color, $posX, $posY, $velocidad, $vMax) {
+        $this->numRuedas = $numRuedas;
         $this->color = $color;
-        $this->posx = $posx=0;
-        $this->posy = $posy=0;
-            $this->velocidad = $velocidad;
-            $this->vMax = $vMax;
+        $this->posX = 0;
+        $this->posY = 0;
+        $this->velocidad = 0;
+        $this->vMax = $vMax;
     }
-   
-   
-     function acelerar($incremento):int {
-        $nuevaVelocidad = $this->velocidad + $incremento;
-        if ($nuevaVelocidad > $this->vMax) {
-            $this->velocidad = $this->vMax;
-            return "No es posible realizar la aceleración";
-        } else {
-            $this->velocidad = $nuevaVelocidad;
-            return "Velocidad actual: " . $this->velocidad;
+
+    public function acelerar($aceleracion)
+    {
+        if($aceleracion + $this->velocidad > $this->vMax){
+            return "No es posible realizar la aceleración.";
+        } else{
+            return $this->velocidad = $aceleracion + $this->velocidad;
         }
     }
 
-     function frenar($decremento):int {
-        $nuevaVelocidad = $this->velocidad - $decremento;
-        $this->velocidad = max(0, $nuevaVelocidad);
-        return "Velocidad actual: " . $this->velocidad;
+    public function frenar($frenado)
+    {
+        if($frenado > $this->velocidad){
+            return $this->velocidad = 0;
+        } else{
+            return $this->velocidad = $this->velocidad - $frenado;
+        }
     }
 
-     function tocarClaxon() {
-        return "¡Beep, beep!";
+    public function tocarClaxon()
+    {
+        return "Beep, beep";
     }
 
-   
-/**
-     * @return mixed
-     */
-    public function getColor()
-    {
-        return $this->color;
-    }
- 
-    /**
-     * @param mixed $color
-     */
-    public function setColor($color): void
-    {
-        $this->color = $color;
-    }
- 
-    /**
-     * @return mixed
-     */
     public function getNumRuedas()
     {
         return $this->numRuedas;
     }
- 
-    /**
-     * @param mixed $numRuedas
-     */
+
     public function setNumRuedas($numRuedas): void
     {
         $this->numRuedas = $numRuedas;
     }
- 
-    public function getPosx(): int
+
+    public function getColor()
     {
-        return $this->posx;
+        return $this->color;
     }
- 
-    public function setPosx(int $posx): void
+
+    public function setColor($color): void
     {
-        $this->posx = $posx;
+        $this->color = $color;
     }
- 
-    public function getPosy(): int
+
+    public function getPosX(): int
     {
-        return $this->posy;
+        return $this->posX;
     }
- 
-    public function setPosy(int $posy): void
+
+    public function setPosX(int $posX): void
     {
-        $this->posy = $posy;
+        $this->posX = $posX;
     }
- 
+
+    public function getPosY(): int
+    {
+        return $this->posY;
+    }
+
+    public function setPosY(int $posY): void
+    {
+        $this->posY = $posY;
+    }
+
     public function getVelocidad(): int
     {
         return $this->velocidad;
     }
- 
+
     public function setVelocidad(int $velocidad): void
     {
         $this->velocidad = $velocidad;
     }
- 
-    /**
-     * @return mixed
-     */
+
     public function getVMax()
     {
         return $this->vMax;
     }
- 
-    /**
-     * @param mixed $vMax
-     */
+
     public function setVMax($vMax): void
     {
         $this->vMax = $vMax;
     }
- 
-   
-
-   
 
 
-   }
-
-   
+}
 ?>
